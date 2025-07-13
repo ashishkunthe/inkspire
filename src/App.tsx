@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -15,10 +15,14 @@ const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
   return token ? element : <Login />;
 };
 
-function App() {
+// 🔁 Extract Routes & Layout for cleaner logic
+const AppRoutes = () => {
+  const location = useLocation();
+  const hideNavbar = ["/login", "/register"].includes(location.pathname);
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/register" element={<Register />} />
@@ -37,6 +41,14 @@ function App() {
           element={<ProtectedRoute element={<CreateBlog />} />}
         />
       </Routes>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }
