@@ -19,7 +19,7 @@ const Welcome = () => {
         thoughts, stories, and ideas with the world.
       </p>
       <button
-        onClick={() => navigate("/login")}
+        onClick={() => navigate("/blogs")}
         className="bg-gray-800 hover:bg-gray-900 text-white text-lg px-8 py-3 rounded-full transition shadow-md"
       >
         Let&apos;s Start

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Login = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
@@ -16,10 +18,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        form
-      );
+      const res = await axios.post(`${VITE_BACKEND_URL}/api/auth/login`, form);
       localStorage.setItem("token", res.data.token);
       navigate("/blogs");
     } catch (err: any) {
