@@ -26,7 +26,7 @@ const CreateBlog = () => {
 
       const res = await axios.post(`${VITE_BACKEND_URL}/api/blogs`, form, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: token,
         },
       });
 

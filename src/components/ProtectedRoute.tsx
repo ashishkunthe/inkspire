@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ProtectedRoute = ({ children }: Props) => {
-  const token = true;
+  const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" />;
 };
 
