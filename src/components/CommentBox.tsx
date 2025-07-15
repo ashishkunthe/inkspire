@@ -18,7 +18,6 @@ const CommentBox = ({
   comments,
   onAddComment,
   onDeleteComment,
-  currentUser,
 }: CommentBoxProps) => {
   const [text, setText] = useState("");
 
